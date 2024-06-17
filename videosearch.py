@@ -20,7 +20,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
 
     # Define the path to save the file locally
-    image_path = "/Users/betuloreilly/repo/vertexvideo/saved_image.png"
+    image_path = st.secrets['IMAGE_PATH']  
 
     # Save the image locally
     image.save(image_path)
