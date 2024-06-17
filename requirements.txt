@@ -1,0 +1,6 @@
+streamlit
+astrapy
+google-cloud 
+google-cloud-aiplatform
+google-cloud-storage 
+google-cloud-vision
