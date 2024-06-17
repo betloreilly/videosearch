@@ -2,7 +2,7 @@
 
 This application allows users to search for specific content within videos using text descriptions or similar images. It leverages Google Cloud's Vertex AI for generating embeddings and Astra DB for data storage.
 
-![Video Search](image-1.png)
+![Video Search](image.png)
 
 ## Prerequisites
 
