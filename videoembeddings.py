@@ -13,12 +13,12 @@ client = DataAPIClient(st.secrets['ASTRA_TOKEN'])
 database = client.get_database(st.secrets['ASTRA_API_ENDPOINT'])
 
 my_collection = database.create_collection(
-    "videosearch",
+    "videodemo",
     dimension=1408,
     metric=astrapy.constants.VectorMetric.COSINE,
 )
 
-collectiondb = database.videosearch
+collectiondb = database.videodemo
 
 # Load the pre-trained model and video
 model = MultiModalEmbeddingModel.from_pretrained("multimodalembedding")
@@ -28,7 +28,7 @@ video = Video.load_from_file(st.secrets['PATH'])
 embeddings = model.get_embeddings(
     video=video,
     contextual_text="Mixed Content",
-    dimension=1408,
+   # dimension=1408,
 )
 
 # Video Embeddings are segmented based on the video_segment_config.

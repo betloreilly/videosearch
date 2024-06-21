@@ -37,7 +37,7 @@ vertexai.init(project=st.secrets['PROJECT'], location=st.secrets['REGION'])
 # Initialize the client
 client = DataAPIClient(st.secrets['ASTRA_TOKEN'])
 database = client.get_database(st.secrets['ASTRA_API_ENDPOINT'])
-collectiondb = database.videosearch
+collectiondb = database.videodemo
 
 # Load the pre-trained model and video
 model = MultiModalEmbeddingModel.from_pretrained("multimodalembedding")
