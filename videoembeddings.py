@@ -1,7 +1,9 @@
 import vertexai
+import astrapy
+import streamlit as st
 from vertexai.vision_models import MultiModalEmbeddingModel, Video
 from astrapy import DataAPIClient
-import streamlit as st
+
 
 # Initialize Vertex AI
 vertexai.init(project=st.secrets['PROJECT'], location=st.secrets['REGION'])
@@ -9,7 +11,14 @@ vertexai.init(project=st.secrets['PROJECT'], location=st.secrets['REGION'])
 # Initialize the client
 client = DataAPIClient(st.secrets['ASTRA_TOKEN'])
 database = client.get_database(st.secrets['ASTRA_API_ENDPOINT'])
-collectiondb = database.videos
+
+my_collection = database.create_collection(
+    "videosearch",
+    dimension=1408,
+    metric=astrapy.constants.VectorMetric.COSINE,
+)
+
+collectiondb = database.videosearch
 
 # Load the pre-trained model and video
 model = MultiModalEmbeddingModel.from_pretrained("multimodalembedding")
@@ -21,9 +30,6 @@ embeddings = model.get_embeddings(
     contextual_text="Mixed Content",
     dimension=1408,
 )
-
-# Print the type of video_embeddings
-print(type(embeddings.video_embeddings))
 
 # Video Embeddings are segmented based on the video_segment_config.
 #print("Video Embeddings:")
